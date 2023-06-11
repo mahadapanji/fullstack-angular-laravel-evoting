@@ -16,7 +16,7 @@ jalankan Backend Laravel:
 3. setelah selesai jalankan "php artisan serve"
 
 jalankan Frontend Angular :
-1. setelah oepn folder, buka command prompt melalui vscode masuk ke directory \be-evote dengan cara : cd .\fe-angular\
+1. setelah oepn folder, buka command prompt melalui vscode masuk ke directory \fe-angular dengan cara : cd .\fe-angular\
 2. install composer dengan command "npm install"
 3. setelah selesai jalankan "ng serve"
 4. lalu buka http://localhost:4200/
