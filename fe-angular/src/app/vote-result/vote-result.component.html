@@ -1,0 +1,39 @@
+<div class="py-3 test_body">
+    <div class="row h-100 g-0 justify-content-center pb-5">
+        <div class="col-lg my-auto">
+            <div class="card border-0 shadow rounded bg-light" id="cardCandidates">
+                <div class="card-header border-0 text-center text-uppercase p-3 text-dark shadow-sm">
+                    <h3 class="fw-bold">Hasil Pemilihan</h3>
+                </div>
+                <div class="row">
+                    <div class="card-header border-0 text-center text-uppercase p-3 text-dark shadow-sm d-flex justify-content-between align-items-center">
+                        <h3 class="fw-bold"></h3>
+                        <button class="btn btn-dark btn-rounded shadow btn-reload m-1" (click)="refresh_page()">
+                          <i class="bi bi-arrow-clockwise"></i> Muat Ulang Data
+                        </button>
+                      </div>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-center g-3" id="listKandidat">
+                        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let candidate of data.candidate_results; let i = index">
+                            <div class="card border-0 shadow-sm rounded-3">
+                                <img [src]="'assets/images/candidate/' + candidate.foto" class="card-img-top img-fluid"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="text-center fw-bold fs-4">Kandidat {{ i + 1 }}</p>
+                                    <p class="card-title text-center fs-5">
+                                        Jumlah Suara <br> {{ candidate.cnt }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <p class="text-center  fs-6">Jumlah Pemilih : {{ data.sum_voters }} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

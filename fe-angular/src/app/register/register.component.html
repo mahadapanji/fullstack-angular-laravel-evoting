@@ -1,0 +1,48 @@
+<div class="py-3 test_body" id="registerPage" style="height: 100vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card border-0 shadow col-lg-4">
+                <div class="card-header text-center fs-3 fw-bold text-uppercase p-3 border-0 shadow-sm">
+                    Mendaftar
+                </div>
+                <div class="card-body p-3">
+                    <form (ngSubmit)="onSubmit()" id="formRegister">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="username" name="username" placeholder="username" min="1"
+                            [(ngModel)]="model.nim" autofocus required autocomplete="off">
+                            <label for="username" id="label_username">NIM</label>
+                   
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                            [(ngModel)]="model.nama" required autocomplete="off">
+                            <label for="name" id="label_name">Nama</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="password"
+                            [(ngModel)]="model.password" autocomplete="off">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="birth_date" name="birth_date" min="1960-01-01" max="2004-01-01"
+                            [(ngModel)]="model.birth_date" required>
+                            <label for="birth_date" id="label_birth_date">Tanggal Lahir</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-control" [(ngModel)]="model.prodi" (change)="changeCity($event)">
+                                <option *ngFor="let c of prodis">{{c.prodi}}</option>
+                              </select>
+                            <label for="prodi" id="label_prodi">Prodi</label>
+                        </div>
+                        <div class="my-4">
+                            <div class="d-grid gap-2 col-lg-6 mx-auto my-1">
+                                <button type="submit" class="btn btn-rounded btn-lg btn-primary"><i class="bi bi-box-arrow-in-down"></i> Mendaftar</button>
+                            </div>
+                        </div>
+                        <small class="d-block text-center p-3">Sudah Memiliki Akun? <a routerLink="/login" class="text-decoration-none fw-bold">Masuk</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

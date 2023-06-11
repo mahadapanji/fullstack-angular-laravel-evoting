@@ -1,0 +1,157 @@
+<!-- <div class="py-3 test_body">
+    <div class="row h-50 g-0 justify-content-center pb-5 ">
+      <div class="col-lg my-auto">
+        <div class="card border-0 shadow rounded bg-light" id="cardCandidates">
+          <div class="card-header border-0 text-center text-uppercase p-3 text-dark shadow-sm">
+            <h3 class="fw-bold">Pilih Kandidat</h3>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center g-5" id="listKandidat">
+              <div class="col-lg-4 col-md-6" *ngFor="let candidate of candidates; let i = index">
+                <div class="card border-0 shadow-sm rounded-3">
+                  <img [src]="'assets/images/candidate/' + candidate.foto" class="card-img-top img-fluid" alt="...">
+                  <div class="card-body">
+                    <p class="text-center fw-bold fs-3">Kandidat {{ i + 1 }}</p>
+                    <p class="card-title text-center fs-6">
+                      {{ candidate.nama_calon }} <br> {{ candidate.nama_wakil_calon }}
+                    </p>
+                  </div>
+                  <div class="card-footer border-0 bg-light">
+                    <div class="row justify-content-between text-center">
+                      <div class="d-grid gap-2 col-5 mx-auto my-1">
+                        <button class="btn btn-rounded btn-outline-dark btnDetailCandidate" [attr.data-id]="candidate.id" type="button">
+                          <i class="bi bi-card-list"></i> Detail
+                        </button>
+                      </div>
+                      <div class="d-grid gap-2 col-7 mx-auto my-1">
+                        <button class="btn btn-rounded btn-primary btnSelectCandidate" [attr.data-url]="getVotingCandidateUrl(candidate.id)" [attr.data-id]="candidate.id" [attr.data-calon]="candidate.nama_calon" [attr.data-wakil]="candidate.nama_wakil_calon" [attr.data-kandidat]="'Kandidat ' + (i + 1)" type="button" *ngIf="!hasVoted">
+                          <i class="bi bi-hand-index-thumb"></i> Pilih Kandidat {{ i + 1 }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<div class="py-3 test_body">
+    <div class="row h-100 g-0 justify-content-center pb-5">
+        <div class="col-lg my-auto">
+            <div class="card border-0 shadow rounded bg-light" id="cardCandidates">
+                <div class="card-header border-0 text-center text-uppercase p-3 text-dark shadow-sm">
+                    <h3 class="fw-bold">Pilih Kandidat</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-center g-3" id="listKandidat">
+                        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let candidate of candidates; let i = index">
+                            <div class="card border-0 shadow-sm rounded-3">
+                                <img [src]="'assets/images/candidate/' + candidate.foto" class="card-img-top img-fluid"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="text-center fw-bold fs-4">Kandidat {{ i + 1 }}</p>
+                                    <p class="card-title text-center fs-5">
+                                        {{ candidate.nama_calon }} <br> {{ candidate.nama_wakil_calon }}
+                                    </p>
+                                </div>
+                                <div class="card-footer border-0 bg-light">
+                                    <div class="row justify-content-between text-center">
+                                        <div class="col-6">
+                                            <button (click)="openModal(candidate.id, 'myModal')"
+                                                class="btn btn-rounded btn-outline-dark btnDetailCandidate"
+                                                type="button">
+                                                <i class="bi bi-card-list"></i> Detail
+                                            </button>
+                                            <!-- <button (click)="openModal()">Open Modal</button> -->
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-rounded btn-primary btnSelectCandidate"
+                                                (click)="openModal(candidate.id, 'yesornomodal')" type="button"
+                                                *ngIf="!hasVoted">
+                                                <i class="bi bi-hand-index-thumb"></i> Pilih Kandidat {{ i + 1 }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{ modal.nama_calon }} Dan {{ modal.nama_wakil_calon }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    (click)="closeModal('myModal')"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Visi</h5>
+                        {{ removeHTMLTags(modal.visi) }}
+                    </div>
+                    <div class="col-6">
+                        <h5>Misi</h5>
+                        {{ removeHTMLTags(modal.misi) }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closeModal('myModal')"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- MODAL -->
+
+<!-- MODAL -->
+<div class="modal" id="yesornomodal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Tentukan Pilihanmu !</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    (click)="closeModal('yesornomodal')"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                  <h4>Ingin Memilih  {{ modal.nama_calon }} Dan {{ modal.nama_wakil_calon }} ?</h4>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="vote(modal.id)"
+                    data-bs-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" (click)="closeModal('yesornomodal')"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- MODAL -->
